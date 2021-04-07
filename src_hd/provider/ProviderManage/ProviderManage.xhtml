@@ -6,80 +6,97 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-	<ui:composition template="/layouts/basic-8.xhtml">
+	<ui:composition template="/layouts/basic-9.xhtml">
 		<ui:define name="title">ProviderManage</ui:define>
 		<ui:define name="content">
-			<p:messages id="messages">
-				<p:autoUpdate />
-			</p:messages>
-			<h:form id="form">
-				<div class="ui-g">
-					<div class="ui-g-2">
-						<p:commandButton id="btn" type="button" icon="ui-icon-edit"
-							value="Create Provider" onclick="PF('dialog-create').show();"
-							update="formCreate" />
-					</div>
-					<div class="table">
-						<p:dataTable id="theTable" value="#{data.listProvider}"
-							var="provider">
-							<p:column headerText="No" styleClass="id-column" id="scoreId">
-								<p:outputLabel value="#{provider.id}" />
-							</p:column>
 
-							<p:column headerText="Name">
-								<p:outputLabel id="colName" value="#{provider.name}" />
-							</p:column>
+			<div class="ui-g">
+				<p:messages id="messages">
+					<p:autoUpdate />
+				</p:messages>
+				<div class="ui-g-2 button-create">
+					<p:commandButton id="btn" icon="ui-icon-edit"
+						value="Create Provider"
+						actionListener="#{providerManageBean.createProviderPage}" />
+				</div>
+				<div class="ui-g-12 form-manage">
 
-							<p:column headerText="Address">
-								<p:repeat value="#{provider.addresses}" var="address">
-									<div>
-										<p:outputLabel id="colAddress" value="#{address.name}" />
-										<p:commandButton id="delete" icon="fa fa-fw fa-remove">
-											<p:ajax listener="#{logic.deleteAddress(address)}"
+					<div class="ui-g-10">
+						<h:form id="form">
+							<div class="ui-g-12 table">
+								<p:dataTable id="theTable" value="#{data.listProvider}"
+									var="provider">
+									<p:column styleClass="name-column" headerText="Name">
+										<p:outputLabel id="colName" value="#{provider.name}" />
+									</p:column>
+
+									<p:column styleClass="address-column" headerText="Address">
+										<p:rowToggler />
+									</p:column>
+
+									<p:rowExpansion styleClass="address-list">
+										<p:repeat value="#{provider.addresses}" var="address">
+											<div>
+												<p:outputLabel styleClass="address" id="colAddress"
+													value="#{address.name}" />
+												<p:commandButton styleClass="delete-address" id="delete"
+													icon="fa fa-fw fa-remove">
+													<p:ajax listener="#{logic.deleteAddress(address)}"
+														update="form:theTable"></p:ajax>
+												</p:commandButton>
+											</div>
+										</p:repeat>
+									</p:rowExpansion>
+
+									<p:column styleClass="delete-column" headerText="Action">
+										<p:commandButton id="edit" update="formEdit" icon="fa fa-edit"
+											onclick="PF('dialog-edit').show();">
+											<f:setPropertyActionListener value="#{provider}"
+												target="#{data.provider}" />
+										</p:commandButton>
+										<p:commandButton id="delete" icon="fa fa-trash">
+											<p:ajax listener="#{logic.delete(provider.id)}"
 												update="form:theTable"></p:ajax>
 										</p:commandButton>
-									</div>
-								</p:repeat>
-							</p:column>
+									</p:column>
+								</p:dataTable>
 
-							<p:column headerText="Delete">
-								<p:commandButton id="delete" value="Delete">
-									<p:ajax listener="#{logic.delete(provider.id)}"
-										update="form:theTable"></p:ajax>
-								</p:commandButton>
-							</p:column>
-
-						</p:dataTable>
-
+							</div>
+						</h:form>
 					</div>
 				</div>
-			</h:form>
+			</div>
 
+			<p:dialog id="dialogEdit" widgetVar="dialog-edit" modal="true"
+				styleClass="provider-dialog" appendTo="@(body)">
+				<div class="title-edit-dialog">
+					<span>Edit Provider</span>
+				</div>
+				<div class="ui-g-12">
+					<h:form id="formEdit">
+						<div class="name-edit">
+							<p:outputLabel for="name">Name: </p:outputLabel>
+							<p:inputText value="#{data.provider.name}" id="name" />
+						</div>
+						<div class="address-edit">
+							<p:outputLabel>Address: </p:outputLabel>
+							<p:repeat value="#{data.provider.addresses}" var="address">
+								<div class="obj-address">
+									<p:inputText styleClass="input-address" value="#{address.name}" />
+								</div>
+							</p:repeat>
+						</div>
 
-			<p:dialog id="dialogCreate" widgetVar="dialog-create" modal="true"
-				styleClass="product-dialog" appendTo="@(body)" width="60%">
-				<h:form id="formCreate">
-					<div class="name">
-						<p:outputLabel for="name">Name: </p:outputLabel>
-						<p:inputText value="#{data.provider.name}" id="name" />
-					</div>
-					<div class="address">
-						<p:outputLabel>Address: </p:outputLabel>
-						<p:repeat value="#{data.provider.addresses}" var="address">
-							<div class="obj-address">
-								<p:inputText value="#{address.name}" />
-							</div>
-						</p:repeat>
-					</div>
+						<div class="edit-button">
+							<p:commandButton icon="fa fa-plus" value="Address"
+								actionListener="#{logic.addAddress}" update="formEdit" />
+							<p:commandButton id="save" value="Save" update="@form"
+								actionListener="#{logic.edit}">
+							</p:commandButton>
+						</div>
+					</h:form>
+				</div>
 
-					<div class="create">
-					<p:commandButton icon="fa fa-plus" value="Address"
-							actionListener="#{logic.addAddress}" update="formCreate" />
-						<p:commandButton id="save" value="Save" update="@form"
-							actionListener="#{logic.create}">
-						</p:commandButton>
-					</div>
-				</h:form>
 			</p:dialog>
 
 

@@ -1,0 +1,78 @@
+.form-manage {
+	display: flex;
+}
+
+.name-column {
+	width: 40%;
+	padding-left: 10% !important;
+}
+
+.delete-column {
+	padding-left: 10% !important;
+}
+
+.address-column {
+	padding-left: 10% !important;
+}
+
+.address-list {
+
+	text-align: center;	
+	padding: 5%;
+}
+
+.address {
+	font-family: cursive;
+	font-size: 15px;
+}
+
+.delete-address {
+	margin-right: 5px;	
+}
+
+.button-create {
+	margin: 6px;
+}
+
+.title-edit-dialog {
+	font-family: cursive;
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.name-edit {
+	padding-top:10%;
+	font-size: 15px;
+	font-weight: bold;
+	padding-left:10%;
+	margin-right: 3%;
+}
+
+.address-edit {
+	font-size: 15px;
+	font-weight: bold;
+	margin-right: 3%;
+	padding: 10%;
+	
+}
+
+.obj-address {
+	padding-bottom: 5%;
+	width: 100%;
+}
+
+.input-address {
+	width: 100%;
+}
+
+.provider-dialog {
+	width: 30% !important;
+	height: auto !important;
+}
+
+.edit-button {
+	padding-left: 15%;
+	padding-bottom: 10%;
+}
+

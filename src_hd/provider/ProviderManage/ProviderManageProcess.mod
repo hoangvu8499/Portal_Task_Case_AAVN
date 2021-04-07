@@ -75,7 +75,7 @@ Ps0 f6 actionTable 'out=in;
 Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>create</name>
+        <name>edit</name>
     </language>
 </elementInfo>
 ' #txt

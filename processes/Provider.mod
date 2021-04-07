@@ -30,7 +30,7 @@ Pr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pr0 f0 @C|.responsibility Everybody #txt
 Pr0 f0 81 49 30 30 -21 17 #rect
 Pr0 f0 @|StartRequestIcon #fIcon
-Pr0 f1 601 49 30 30 0 15 #rect
+Pr0 f1 505 49 30 30 0 15 #rect
 Pr0 f1 @|EndIcon #fIcon
 Pr0 f3 dialogId provider.ProviderManage #txt
 Pr0 f3 startMethod start() #txt
@@ -47,7 +47,7 @@ Pr0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pr0 f3 224 42 112 44 -44 -8 #rect
 Pr0 f3 @|UserDialogIcon #fIcon
 Pr0 f4 111 64 224 64 #arcP
-Pr0 f2 336 64 601 64 #arcP
+Pr0 f2 336 64 505 64 #arcP
 >Proto Pr0 .type provider.ProviderData #txt
 >Proto Pr0 .processKind NORMAL #txt
 >Proto Pr0 0 0 32 24 18 0 #rect

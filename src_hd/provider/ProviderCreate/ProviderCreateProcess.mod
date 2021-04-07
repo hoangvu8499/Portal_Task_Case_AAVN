@@ -25,7 +25,11 @@ Ps0 @GridStep f13 '' #zField
 Ps0 @PushWFArc f14 '' #zField
 Ps0 @PushWFArc f15 '' #zField
 Ps0 @UdExitEnd f0 '' #zField
+Ps0 @Alternative f2 '' #zField
+Ps0 @PushWFArc f7 '' #zField
 Ps0 @PushWFArc f1 '' #zField
+Ps0 @UdProcessEnd f10 '' #zField
+Ps0 @PushWFArc f16 '' #zField
 >Proto Ps0 Ps0 ProviderCreateProcess #zField
 Ps0 f3 guid 178A4B28135119F8 #txt
 Ps0 f3 actionTable 'out=in;
@@ -78,20 +82,38 @@ Ps0 f22 304 232 371 232 #arcP
 Ps0 f21 109 232 192 232 #arcP
 Ps0 f8 actionTable 'out=in;
 ' #txt
-Ps0 f8 actionCode 'import org.primefaces.context.RequestContext;
+Ps0 f8 actionCode 'import javax.faces.context.FacesContext;
+import List;
+import model.Address;
+import dao.AddressDao;
+import org.primefaces.context.RequestContext;
 import dao.ProviderDao;
-ProviderDao providerDao = new dao.ProviderDao();
+import javax.faces.application.FacesMessage;
+in.checking = true;
 
-//providerDao.save(in.provider);
-' #txt
+ProviderDao providerDao = new dao.ProviderDao();
+List<Address> listAddress = in.provider.addresses;
+for(Address address: listAddress){
+	if(address.name.isEmpty()){
+			in.checking = false;
+			break;
+	}
+}
+if(in.provider.name.isEmpty()){
+		in.checking = false;
+}
+if(in.checking == false){
+ FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, "ADDRESS OR NAME IS NOT NUT", "ADDRESS OR NAMES NOT NUT"));
+}' #txt
 Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>create</name>
+        <name>Check Data</name>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f8 192 298 112 44 -17 -8 #rect
+Ps0 f8 192 298 112 44 -32 -8 #rect
 Ps0 f8 @|StepIcon #fIcon
 Ps0 f6 guid 178A4B470A693B92 #txt
 Ps0 f6 actionTable 'out=in;
@@ -137,6 +159,7 @@ if(in.provider.name.isEmpty()){
 	Address newAddress = new Address();
 	newAddress.provider = in.provider;
 	in.provider.addresses.add(newAddress);
+	in.checking = true;
 }' #txt
 Ps0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -149,9 +172,35 @@ Ps0 f13 192 50 112 44 -15 -8 #rect
 Ps0 f13 @|StepIcon #fIcon
 Ps0 f14 109 72 192 72 #arcP
 Ps0 f15 304 72 371 72 #arcP
-Ps0 f0 371 307 26 26 0 12 #rect
+Ps0 f0 499 307 26 26 0 12 #rect
 Ps0 f0 @|UdExitEndIcon #fIcon
-Ps0 f1 304 320 371 320 #arcP
+Ps0 f2 368 304 32 32 0 16 #rect
+Ps0 f2 @|AlternativeIcon #fIcon
+Ps0 f7 304 320 368 320 #arcP
+Ps0 f1 expr in #txt
+Ps0 f1 outCond 'in.checking == true' #txt
+Ps0 f1 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>validate TRUE</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f1 400 320 499 320 #arcP
+Ps0 f1 0 0.5151515151515151 0 -19 #arcLabel
+Ps0 f10 371 403 26 26 0 12 #rect
+Ps0 f10 @|UdProcessEndIcon #fIcon
+Ps0 f16 expr in #txt
+Ps0 f16 outCond 'in.checking == false' #txt
+Ps0 f16 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>validate FALSE</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f16 384 336 384 403 #arcP
+Ps0 f16 0 0.44776119402985076 -53 0 #arcLabel
 >Proto Ps0 .type provider.ProviderCreate.ProviderCreateData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
@@ -168,5 +217,9 @@ Ps0 f11 mainOut f14 tail #connect
 Ps0 f14 head f13 mainIn #connect
 Ps0 f13 mainOut f15 tail #connect
 Ps0 f15 head f12 mainIn #connect
-Ps0 f8 mainOut f1 tail #connect
+Ps0 f8 mainOut f7 tail #connect
+Ps0 f7 head f2 in #connect
+Ps0 f2 out f1 tail #connect
 Ps0 f1 head f0 mainIn #connect
+Ps0 f2 out f16 tail #connect
+Ps0 f16 head f10 mainIn #connect

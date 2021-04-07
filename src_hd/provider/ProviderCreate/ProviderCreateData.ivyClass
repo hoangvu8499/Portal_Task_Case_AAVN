@@ -2,3 +2,5 @@ ProviderCreateData #class
 provider.ProviderCreate #namespace
 provider model.Provider #field
 provider PERSISTENT #fieldModifier
+checking Boolean #field
+checking PERSISTENT #fieldModifier

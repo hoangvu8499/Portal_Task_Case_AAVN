@@ -16,9 +16,7 @@
 }
 
 .address-list {
-
-	text-align: center;	
-	padding: 5%;
+	padding: 3%;
 }
 
 .address {
@@ -27,7 +25,7 @@
 }
 
 .delete-address {
-	margin-right: 5px;	
+	margin-right: 5px;
 }
 
 .button-create {
@@ -42,10 +40,10 @@
 }
 
 .name-edit {
-	padding-top:10%;
+	padding-top: 10%;
 	font-size: 15px;
 	font-weight: bold;
-	padding-left:10%;
+	padding-left: 10%;
 	margin-right: 3%;
 }
 
@@ -54,7 +52,6 @@
 	font-weight: bold;
 	margin-right: 3%;
 	padding: 10%;
-	
 }
 
 .obj-address {
@@ -76,3 +73,16 @@
 	padding-bottom: 10%;
 }
 
+.address-provider {
+	padding-left: 3% !important;
+}
+
+.action-address {
+	margin-left: 15%;
+	width: 15%;
+}
+
+.table-address {
+	width: 50%;
+	margin-left: 20%;
+}

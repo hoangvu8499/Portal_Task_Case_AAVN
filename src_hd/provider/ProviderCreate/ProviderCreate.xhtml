@@ -15,13 +15,14 @@
 				</div>
 				<div class="ui-g-5 form-create">
 					<h:form id="form">
+						<p:messages />
 						<div class="name">
 							<p:outputLabel styleClass="label-name" for="name">Name: </p:outputLabel>
 							<p:inputText styleClass="input-name"
 								value="#{data.provider.name}" id="name" />
 						</div>
 						<div class="address">
-							<p:outputLabel  styleClass="label-address">Address: <p:commandButton
+							<p:outputLabel styleClass="label-address">Address: <p:commandButton
 									icon="fa fa-plus" actionListener="#{logic.addAddress}"
 									update="@form" />
 							</p:outputLabel>

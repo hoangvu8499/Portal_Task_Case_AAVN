@@ -11,18 +11,15 @@
 		<ui:define name="content">
 
 			<div class="ui-g">
-				<p:messages id="messages">
-					<p:autoUpdate />
-				</p:messages>
 				<div class="ui-g-2 button-create">
 					<p:commandButton id="btn" icon="ui-icon-edit"
 						value="Create Provider"
 						actionListener="#{providerManageBean.createProviderPage}" />
 				</div>
 				<div class="ui-g-12 form-manage">
-
 					<div class="ui-g-10">
 						<h:form id="form">
+							<p:messages />
 							<div class="ui-g-12 table">
 								<p:dataTable id="theTable" value="#{data.listProvider}"
 									var="provider">
@@ -35,17 +32,35 @@
 									</p:column>
 
 									<p:rowExpansion styleClass="address-list">
-										<p:repeat value="#{provider.addresses}" var="address">
+										<p:dataTable styleClass="table-address" id="theTable" value="#{provider.addresses}"
+											var="address">
+											<p:column styleClass="address-provider" headerText="Address">
+												<p:outputLabel id="colName" value="#{address.name}" />
+											</p:column>
+
+											<p:column styleClass="action-address" headerText="Action">
+												<p:commandButton styleClass="delete-address" id="delete"
+													icon="fa fa-fw fa-remove">
+													<p:ajax listener="#{logic.deleteAddress(address)}"
+														update="@form"></p:ajax>
+												</p:commandButton>
+											</p:column>
+
+										</p:dataTable>
+
+
+									<!-- 	<p:repeat value="#{provider.addresses}" var="address">
 											<div>
+
 												<p:outputLabel styleClass="address" id="colAddress"
 													value="#{address.name}" />
 												<p:commandButton styleClass="delete-address" id="delete"
 													icon="fa fa-fw fa-remove">
 													<p:ajax listener="#{logic.deleteAddress(address)}"
-														update="form:theTable"></p:ajax>
+														update="@form"></p:ajax>
 												</p:commandButton>
 											</div>
-										</p:repeat>
+										</p:repeat> -->
 									</p:rowExpansion>
 
 									<p:column styleClass="delete-column" headerText="Action">
@@ -72,8 +87,10 @@
 				<div class="title-edit-dialog">
 					<span>Edit Provider</span>
 				</div>
+
 				<div class="ui-g-12">
 					<h:form id="formEdit">
+						<p:messages />
 						<div class="name-edit">
 							<p:outputLabel for="name">Name: </p:outputLabel>
 							<p:inputText value="#{data.provider.name}" id="name" />

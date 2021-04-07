@@ -64,11 +64,11 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f3 83 635 26 26 -15 15 #rect
+Ps0 f3 507 59 26 26 -15 15 #rect
 Ps0 f3 @|UdEventIcon #fIcon
-Ps0 f4 235 635 26 26 0 12 #rect
+Ps0 f4 507 227 26 26 0 12 #rect
 Ps0 f4 @|UdExitEndIcon #fIcon
-Ps0 f5 109 648 235 648 #arcP
+Ps0 f5 520 85 520 227 #arcP
 Ps0 f6 guid 1788CBFA221F15DA #txt
 Ps0 f6 actionTable 'out=in;
 ' #txt
@@ -85,26 +85,43 @@ Ps0 f7 371 179 26 26 0 12 #rect
 Ps0 f7 @|UdProcessEndIcon #fIcon
 Ps0 f8 actionTable 'out=in;
 ' #txt
-Ps0 f8 actionCode 'import dao.AddressDao;
+Ps0 f8 actionCode 'import javax.faces.context.FacesContext;
+import List;
+import model.Address;
+import dao.AddressDao;
 import org.primefaces.context.RequestContext;
 import dao.ProviderDao;
+import javax.faces.application.FacesMessage;
+
 
 ProviderDao providerDao = new dao.ProviderDao();
 
-providerDao.save(in.provider);
+List<Address> listAddress = in.provider.addresses;
+Boolean checkAddress = true;
+for(Address address: listAddress){
+	if(address.name.isEmpty()){
+			checkAddress = false;
+			break;
+	}
+}
 
-in.listProvider = providerDao.getAll();
-RequestContext.getCurrentInstance().execute("PF(''dialog-create'').hide()");
-		RequestContext.getCurrentInstance().update("form");
-' #txt
+if(checkAddress == false){
+ FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, "ADDRESS IS NOT NUT", "ADDRESS IS NOT NUT"));
+}else{
+	providerDao.save(in.provider);
+	in.listProvider = providerDao.getAll();
+	RequestContext.getCurrentInstance().execute("PF(''dialog-edit'').hide()");
+			RequestContext.getCurrentInstance().update("form");
+}' #txt
 Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>create</name>
+        <name>edit</name>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f8 192 170 112 44 -17 -8 #rect
+Ps0 f8 192 170 112 44 -10 -8 #rect
 Ps0 f8 @|StepIcon #fIcon
 Ps0 f9 109 192 192 192 #arcP
 Ps0 f10 304 192 371 192 #arcP
@@ -146,7 +163,7 @@ Ps0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f13 83 531 26 26 -25 15 #rect
+Ps0 f13 83 379 26 26 -25 15 #rect
 Ps0 f13 @|UdMethodIcon #fIcon
 Ps0 f14 actionTable 'out=in;
 ' #txt
@@ -161,12 +178,12 @@ Ps0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f14 192 522 112 44 -17 -8 #rect
+Ps0 f14 192 370 112 44 -17 -8 #rect
 Ps0 f14 @|StepIcon #fIcon
-Ps0 f15 371 531 26 26 0 12 #rect
+Ps0 f15 371 379 26 26 0 12 #rect
 Ps0 f15 @|UdProcessEndIcon #fIcon
-Ps0 f16 109 544 192 544 #arcP
-Ps0 f17 304 544 371 544 #arcP
+Ps0 f16 109 392 192 392 #arcP
+Ps0 f17 304 392 371 392 #arcP
 Ps0 f18 guid 17891F60C8D5BB07 #txt
 Ps0 f18 actionTable 'out=in;
 ' #txt
@@ -177,9 +194,9 @@ Ps0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f18 83 731 26 26 -14 15 #rect
+Ps0 f18 83 483 26 26 -14 15 #rect
 Ps0 f18 @|UdEventIcon #fIcon
-Ps0 f19 371 731 26 26 0 12 #rect
+Ps0 f19 371 483 26 26 0 12 #rect
 Ps0 f19 @|UdProcessEndIcon #fIcon
 Ps0 f20 actionTable 'out=in;
 ' #txt
@@ -197,10 +214,10 @@ Ps0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f20 192 722 112 44 -33 -8 #rect
+Ps0 f20 192 474 112 44 -33 -8 #rect
 Ps0 f20 @|StepIcon #fIcon
-Ps0 f21 109 744 192 744 #arcP
-Ps0 f22 304 744 371 744 #arcP
+Ps0 f21 109 496 192 496 #arcP
+Ps0 f22 304 496 371 496 #arcP
 Ps0 f23 guid 178A16963426D61D #txt
 Ps0 f23 method deleteAddress(model.Address) #txt
 Ps0 f23 inParameterDecl '<model.Address address> param;' #txt
@@ -215,7 +232,7 @@ Ps0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f23 83 427 26 26 -25 15 #rect
+Ps0 f23 83 275 26 26 -25 15 #rect
 Ps0 f23 @|UdMethodIcon #fIcon
 Ps0 f24 actionTable 'out=in;
 ' #txt
@@ -230,13 +247,11 @@ if(in.address.provider.addresses.size() == 1){
 			new FacesMessage(FacesMessage.SEVERITY_ERROR,"Address Alway Exists",
 			"Address Alway Exists"));
 }else{
-
 	ProviderDao providerDao = new dao.ProviderDao();
 	AddressDao addressDao = new AddressDao();
 	
 	addressDao.delete(in.address.id);
 	in.listProvider = providerDao.getAll();
-
 }
 
 
@@ -251,12 +266,12 @@ Ps0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f24 192 418 112 44 -17 -8 #rect
+Ps0 f24 192 266 112 44 -17 -8 #rect
 Ps0 f24 @|StepIcon #fIcon
-Ps0 f25 371 427 26 26 0 12 #rect
+Ps0 f25 371 275 26 26 0 12 #rect
 Ps0 f25 @|UdProcessEndIcon #fIcon
-Ps0 f26 109 440 192 440 #arcP
-Ps0 f27 304 440 371 440 #arcP
+Ps0 f26 109 288 192 288 #arcP
+Ps0 f27 304 288 371 288 #arcP
 >Proto Ps0 .type provider.ProviderManage.ProviderManageData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect

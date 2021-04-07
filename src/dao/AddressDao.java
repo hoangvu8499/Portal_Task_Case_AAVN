@@ -39,7 +39,6 @@ public class AddressDao extends BaseDao {
 		try {
 			transaction = session.beginTransaction();
 			addresses = session.createCriteria(Address.class).list();
-			// transaction.commit();
 		} catch (Exception e) {
 			transaction.rollback();
 			e.printStackTrace();

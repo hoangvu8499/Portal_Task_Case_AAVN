@@ -1,0 +1,8 @@
+confirmCreateData #class
+provider.confirmCreate #namespace
+provider model.Provider #field
+provider PERSISTENT #fieldModifier
+accept Boolean #field
+accept PERSISTENT #fieldModifier
+comment String #field
+comment PERSISTENT #fieldModifier

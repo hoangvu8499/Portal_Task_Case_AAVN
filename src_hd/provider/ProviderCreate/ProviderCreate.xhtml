@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/layouts/basic-8.xhtml">
+		<ui:define name="title">ProviderCreate</ui:define>
+		<ui:define name="content">
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<span class="title-form">CREATE PROVIDER</span>
+				</div>
+				<div class="ui-g-5 form-create">
+					<h:form id="form">
+						<div class="name">
+							<p:outputLabel styleClass="label-name" for="name">Name: </p:outputLabel>
+							<p:inputText styleClass="input-name"
+								value="#{data.provider.name}" id="name" />
+						</div>
+						<div class="address">
+							<p:outputLabel  styleClass="label-address">Address: <p:commandButton
+									icon="fa fa-plus" actionListener="#{logic.addAddress}"
+									update="@form" />
+							</p:outputLabel>
+							<p:repeat value="#{data.provider.addresses}" var="address">
+								<div class="input-address">
+									<p:inputText value="#{address.name}" />
+								</div>
+							</p:repeat>
+						</div>
+
+						<div class="create">
+							<p:commandButton id="save" value="Save" update="@form"
+								icon="fa fa-save" actionListener="#{logic.create}" />
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

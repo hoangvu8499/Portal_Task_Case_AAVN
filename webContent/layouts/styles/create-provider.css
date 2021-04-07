@@ -1,0 +1,56 @@
+.title-form {
+	font-family: cursive !important;
+	font-size: 25px !important;
+	margin-left: 35%;
+	font-weight: bold;
+	border-bottom: 1px solid;
+}
+
+.title-form-confirm {
+	font-family: cursive !important;
+	font-size: 25px !important;
+	margin-left: 32%;
+	font-weight: bold;
+	border-bottom: 1px solid;
+}
+
+.form-create {
+	margin-left: 25%;
+}
+
+.name {
+	display: flex;
+	padding: 2%;
+}
+
+.label-name {
+	margin-right: 2%;
+	font-family: cursive !important;
+	font-size: 20px;
+}
+
+.label-address {
+	margin-right: 2%;
+	font-family: cursive !important;
+	font-size: 20px;
+}
+
+.address {
+	padding: 2%;
+	padding-bottom: 2%;
+	padding-top: 2%;
+}
+
+.create {
+	padding-top: 5%;
+	margin-left: 80%;
+}
+
+.confirm {
+	padding-top: 5%;
+	margin-left: 25%;
+}
+
+.input-address {
+	margin-top: 3%;
+}

@@ -1,0 +1,8 @@
+ProviderManageData #class
+provider.ProviderManage #namespace
+provider model.Provider #field
+provider PERSISTENT #fieldModifier
+listProvider java.util.List<model.Provider> #field
+listProvider PERSISTENT #fieldModifier
+address model.Address #field
+address PERSISTENT #fieldModifier

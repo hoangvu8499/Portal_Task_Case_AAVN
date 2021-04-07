@@ -1,0 +1,8 @@
+providerCreateData #class
+provider #namespace
+provider model.Provider #field
+provider PERSISTENT #fieldModifier
+confirm Boolean #field
+confirm PERSISTENT #fieldModifier
+comment String #field
+comment PERSISTENT #fieldModifier

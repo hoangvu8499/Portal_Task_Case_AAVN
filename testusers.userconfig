@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<userConfig>
+    <user>
+        <username>provider1</username>
+        <password>123</password>
+        <fullName>abc</fullName>
+        <emailAddress>nacu22984@gmail.com</emailAddress>
+        <role>Provider</role>
+    </user>
+    <user>
+        <username>admin1</username>
+        <password>123</password>
+        <fullName>admin 1</fullName>
+        <emailAddress>hoangvu8499@gmail.com</emailAddress>
+        <role>Admin</role>
+        <role>Provider</role>
+    </user>
+</userConfig>

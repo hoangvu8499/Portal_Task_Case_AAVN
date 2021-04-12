@@ -6,10 +6,67 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-	<ui:composition template="/layouts/basic-8.xhtml">
+	<ui:composition template="/layouts/BasicTemplate.xhtml">
 		<ui:define name="title">confirmCreate</ui:define>
-		<ui:define name="content">
-		
+
+		<!-- 
+		<ui:param name="caseId" value="#{data.gdprRequest.caseId}" />
+		<ui:param name="task" value="#{ivy.task}" />
+		<ui:param name="actualStepIndex"
+			value="#{data.gdprRequest.processState.stepForProcessChain}" />
+		<ui:param name="steps"
+			value="#{data.gdprRequest.processState.listForProcessChain}" />
+
+		<div>
+			<div class="">
+				<ui:define name="taskName">
+					<span class=" fa fa-check-square-o task-template-title-icon"></span>
+					<h:outputText styleClass="task-template-title" id="title"
+						title="#{task.name}" value="#{task.name}" />
+				</ui:define>
+			</div>
+			<div class="">
+				<ui:define name="process_chain_area">
+					<ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain
+						startMethod="start" componentId="process-chain-component-id"
+						shape="LINE" direction="HORIZONTAL" isShowAllSteps="false"
+						actualStepIndex="#{actualStepIndex}" steps="#{steps}"
+						currentIndex="#{taskTemplateBean.getIndexOfCurrentStage(caseId)}"
+						stages="#{taskTemplateBean.getStagesBaseOnCurrentStage(caseId,steps)}" />
+				</ui:define>
+			</div>
+		</div>
+ -->
+		<!-- 		<ui:define name="simplePageContent">
+			<div class="process-chain-test">
+				<ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain
+					id="process-chain-circle-horizontal"
+					componentId="component-circle-horizontal" shape="CIRCLE"
+					direction="HORIZONTAL" isShowAllSteps="false"
+					actualStepIndex="#{data.actualCurrentIndex}"
+					steps="#{['Step 1','Step 2','Step 3','Step 4','Step 5','Step 6','Step 7','Step 8','Step 9']}" />
+			</div>
+		</ui:define> -->
+
+
+
+		<ui:define name="pageContent">
+
+			<!-- 	<ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain
+					id="process-chain-circle-horizontal"
+					componentId="component-circle-horizontal" shape="CIRCLE"
+					direction="HORIZONTAL" isShowAllSteps="false"
+					actualStepIndex="#{data.actualCurrentIndex}"
+					steps="#{['Step 1','Step 2','Step 3','Step 4','Step 5','Step 6','Step 7','Step 8','Step 9']}" />
+ -->
+
+			<ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain
+				startMethod="start" componentId="process-chain-component-id"
+				shape="LINE" direction="HORIZONTAL" isShowAllSteps="false"
+				actualStepIndex="#{actualStepIndex}" steps="#{steps}"
+				currentIndex="#{taskTemplateBean.getIndexOfCurrentStage(caseId)}"
+				stages="#{taskTemplateBean.getStagesBaseOnCurrentStage(caseId,steps)}" />
+				
 			<div class="ui-g">
 				<div class="ui-g-12">
 					<span class="title-form-confirm">CONFIRM PROVIDER</span>
@@ -32,10 +89,27 @@
 						</div>
 
 						<div class="confirm">
-							<p:commandButton icon="fa fa-plus" value="None Accept"
-								actionListener="#{logic.close}" update="@form" />
+							<!-- 	<p:commandButton icon="fa fa-plus" value="None Accept"
+								actionListener="#{logic.close}" update="@form" /> -->
 							<p:commandButton id="accept" value="Accept" update="@form"
 								actionListener="#{logic.confirm}" />
+						</div>
+					</h:form>
+
+				</div>
+
+				<div class="ui-g-5 none-accept">
+					<h:form id="form-comment">
+						<p:messages />
+						<div class="comment">
+							<p:outputLabel styleClass="label-comment" for="comment">Comment: </p:outputLabel>
+							<p:inputText styleClass="input-comment" value="#{data.comment}"
+								id="comment" />
+						</div>
+
+						<div class="comment">
+							<p:commandButton icon="fa fa-plus" value="None Accept"
+								actionListener="#{logic.close}" update=":form-comment" />
 						</div>
 					</h:form>
 				</div>

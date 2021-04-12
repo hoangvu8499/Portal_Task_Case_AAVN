@@ -66,7 +66,20 @@ Address test = new Address();
 test.provider = in.provider;
 
 in.provider.addresses.add(test);
-' #txt
+
+
+import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.IRole;
+import java.util.Locale;
+
+ivy.wf.getSecurityContext().getTopLevelRole().createChildRole("MyRole", "USER_TEST", "Description of MyRole", true);
+
+IUser user = ivy.request.getApplication().getSecurityContext().findUser("abc");
+IRole role = ivy.request.getApplication().getSecurityContext().findRole("Admin");
+
+//user.addRole(role);
+
+ivy.log.error("User have infor: "+ user.getEMailAddress() + " Have Name: "+ user.getRoles().get(1).getName());' #txt
 Ps0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -74,12 +87,12 @@ Ps0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f20 192 210 112 44 -33 -8 #rect
+Ps0 f20 184 210 112 44 -33 -8 #rect
 Ps0 f20 @|StepIcon #fIcon
 Ps0 f19 371 219 26 26 0 12 #rect
 Ps0 f19 @|UdProcessEndIcon #fIcon
-Ps0 f22 304 232 371 232 #arcP
-Ps0 f21 109 232 192 232 #arcP
+Ps0 f22 296 232 371 232 #arcP
+Ps0 f21 109 232 184 232 #arcP
 Ps0 f8 actionTable 'out=in;
 ' #txt
 Ps0 f8 actionCode 'import javax.faces.context.FacesContext;
@@ -129,9 +142,10 @@ Ps0 f6 83 307 26 26 -14 15 #rect
 Ps0 f6 @|UdEventIcon #fIcon
 Ps0 f9 109 320 192 320 #arcP
 Ps0 f11 guid 178A4B4A60A43934 #txt
-Ps0 f11 method start(model.Provider) #txt
-Ps0 f11 inParameterDecl '<model.Provider provider> param;' #txt
-Ps0 f11 inParameterMapAction 'out.provider=param.provider;
+Ps0 f11 method start(model.Provider,model.GdprRequest) #txt
+Ps0 f11 inParameterDecl '<model.Provider provider,model.GdprRequest gdprRequest> param;' #txt
+Ps0 f11 inParameterMapAction 'out.gdprRequest=param.gdprRequest;
+out.provider=param.provider;
 ' #txt
 Ps0 f11 outParameterDecl '<model.Provider provider> result;' #txt
 Ps0 f11 outParameterMapAction 'result.provider=in.provider;
@@ -139,7 +153,7 @@ Ps0 f11 outParameterMapAction 'result.provider=in.provider;
 Ps0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(Provider)</name>
+        <name>start(Provider,GdprRequest)</name>
     </language>
 </elementInfo>
 ' #txt

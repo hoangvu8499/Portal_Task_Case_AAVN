@@ -23,6 +23,9 @@ pe0 @PushWFArc f12 '' #zField
 >Proto pe0 pe0 providerCreate #zField
 pe0 f0 outLink createProvider.ivp #txt
 pe0 f0 inParamDecl '<> param;' #txt
+pe0 f0 inParamTable 'out.gdprRequest.caseId=ivy.case.getId();
+out.gdprRequest.processState=model.ProcessState.APPLICATION;
+' #txt
 pe0 f0 requestEnabled true #txt
 pe0 f0 triggerEnabled false #txt
 pe0 f0 callSignature createProvider() #txt
@@ -40,9 +43,10 @@ pe0 f0 @|StartRequestIcon #fIcon
 pe0 f1 617 121 30 30 0 15 #rect
 pe0 f1 @|EndIcon #fIcon
 pe0 f3 dialogId provider.ProviderCreate #txt
-pe0 f3 startMethod start(model.Provider) #txt
-pe0 f3 requestActionDecl '<model.Provider provider> param;' #txt
+pe0 f3 startMethod start(model.Provider,model.GdprRequest) #txt
+pe0 f3 requestActionDecl '<model.Provider provider,model.GdprRequest gdprRequest> param;' #txt
 pe0 f3 requestMappingAction 'param.provider=in.provider;
+param.gdprRequest=in.gdprRequest;
 ' #txt
 pe0 f3 responseMappingAction 'out=in;
 out.provider=result.provider;
@@ -57,9 +61,10 @@ pe0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 pe0 f3 136 114 112 44 -41 -8 #rect
 pe0 f3 @|UserDialogIcon #fIcon
 pe0 f5 dialogId provider.confirmCreate #txt
-pe0 f5 startMethod start(model.Provider) #txt
-pe0 f5 requestActionDecl '<model.Provider provider> param;' #txt
+pe0 f5 startMethod start(model.Provider,model.GdprRequest) #txt
+pe0 f5 requestActionDecl '<model.Provider provider,model.GdprRequest gdprRequest> param;' #txt
 pe0 f5 requestMappingAction 'param.provider=in.provider;
+param.gdprRequest=in.gdprRequest;
 ' #txt
 pe0 f5 responseMappingAction 'out=in;
 out.comment=result.comment;
@@ -70,7 +75,8 @@ pe0 f5 caseData case.name=<%\=in.provider%> #txt
 pe0 f5 taskData 'TaskA.DESC=confirm create new provider
 TaskA.NAM=confirm
 TaskA.ROL=Admin
-TaskA.TYPE=0' #txt
+TaskA.TYPE=0
+TaskA.customFields.STRING.embedInFrame="false"' #txt
 pe0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

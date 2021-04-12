@@ -6,3 +6,9 @@ confirm Boolean #field
 confirm PERSISTENT #fieldModifier
 comment String #field
 comment PERSISTENT #fieldModifier
+notes java.util.List<ch.ivyteam.ivy.workflow.INote> #field
+notes PERSISTENT #fieldModifier
+note ch.ivyteam.ivy.workflow.INote #field
+note PERSISTENT #fieldModifier
+gdprRequest model.GdprRequest #field
+gdprRequest PERSISTENT #fieldModifier

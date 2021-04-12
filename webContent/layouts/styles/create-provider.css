@@ -54,3 +54,16 @@
 .input-address {
 	margin-top: 3%;
 }
+
+.none-accept {
+	margin-left: 25%;
+	width: 100%;
+	
+}
+
+.comment {
+	display: flex;
+	padding: 2%;
+}
+
+

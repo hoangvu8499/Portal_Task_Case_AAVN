@@ -6,3 +6,17 @@ accept Boolean #field
 accept PERSISTENT #fieldModifier
 comment String #field
 comment PERSISTENT #fieldModifier
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
+portalPage ch.ivy.addon.portalkit.enums.PortalPage #field
+portalPage PERSISTENT #fieldModifier
+dataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
+dataModel PERSISTENT #fieldModifier
+isFromTaskList Boolean #field
+isFromTaskList PERSISTENT #fieldModifier
+isTaskStartedInDetails Boolean #field
+isTaskStartedInDetails PERSISTENT #fieldModifier
+gdprRequest model.GdprRequest #field
+gdprRequest PERSISTENT #fieldModifier
+actualCurrentIndex Integer #field
+actualCurrentIndex PERSISTENT #fieldModifier
